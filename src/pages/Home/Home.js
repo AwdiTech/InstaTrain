@@ -22,7 +22,7 @@ function Home() {
     }
 
     const gotoWorkoutPage = (select) => {
-        navigate('/workout', { select: { selection: select } })
+        navigate('/workout', { state: { selection: select } })
     }
 
     return (

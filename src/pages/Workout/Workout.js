@@ -10,7 +10,7 @@ import optionSelections from './../../data/optionSelections.json';
 function Workout() {
 
     const location = useLocation();
-    const { selection } = location.select || {};
+    const { selection } = location.state || {};
     const [ exercises, setExercises ] = useState([]);
 
 

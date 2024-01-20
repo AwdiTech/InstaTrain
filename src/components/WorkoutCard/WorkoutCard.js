@@ -1,34 +1,36 @@
 import { useState } from 'react';
 import './WorkoutCard.scss';
 
-function WorkoutCard() {
-    const { isFlipped, setIsFlipped } = useState(false);
+function WorkoutCard({ name, equipment, type, difficulty, muscle, instructions }) {
+    const [isFlipped, setIsFlipped] = useState(false);
+
+    const handleFlip = () => {
+        setIsFlipped(!isFlipped);
+    };
 
 
-    if (isFlipped) {
-        return (
-            <section className='card'>
-                <p className='card__instructions'>Instructions: { }</p>
-            </section>
-        )
-    }
-    else {
-        return (
-            <section className='card'>
-                <article className='card__row'>
-                    <p>Name: { }</p>
-                    <p>Equipment: { }</p>
-                </article>
-                <article className='card__row'>
-                    <p>Type: { }</p>
-                    <p>Difficulty: { }</p>
-                </article>
-                <article className='card__row'>
-                    <p>Muscle: { }</p>
-                </article>
-            </section>
-        )
-    }
+    return (
+        <section className='card-container' onClick={handleFlip}>
+            <div className={`card ${isFlipped ? 'flipped' : ''}`}>
+                <section className='card-front'>
+                    <article className='card__column'>
+                        <p><b>Name:</b> {name}</p>
+                        <p><b>Type:</b> {type}</p>
+                        <p><b>Muscle:</b> {muscle}</p>
+                    </article>
+                    <article className='card__column'>
+                        <p><b>Equipment:</b> {equipment}</p>
+                        <p><b>Difficulty:</b> {difficulty}</p>
+                    </article>
+                </section>
+                <section className='card-back'>
+                    <p className='card__instructions'><b>Instructions:</b> </p>
+                    <p className='card__instructions'>{instructions}</p>
+                </section>
+            </div>
+        </section>
+    );
 }
+
 
 export default WorkoutCard;

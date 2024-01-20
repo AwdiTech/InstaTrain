@@ -1,27 +1,31 @@
 import exitIcon from './../../assets/exit-icon.png';
 import { useState } from 'react';
 import './PopUpBox.scss';
-import { v4 as uuidv4 } from 'uuid';
 
-function PopUpBox({ visibilty, exit, listOfOptions, gotoWorkoutPage }) {
 
-    const [ selection, setSelection ] = useState('');
+function PopUpBox({ listOfOptions, visibility, exit, gotoWorkoutPage }) {
 
-    // if (!visibilty){
-    //     return null;
-    // }
+    const [selection, setSelection] = useState('');
+
+    const handleEnter = () => {
+        if (selection) {
+            gotoWorkoutPage(selection);
+            exit(); // to close the popup
+        }
+    };
+
+    if (!visibility) 
+        return null;
 
     return (
         <section className="popup-box">
-            <div onClick={exit} className="popup-box__exit-icon">
-                <img src={exitIcon} className="icon"/>
-            </div>
+            <div onClick={exit} className="popup-box__exit-icon"><img src={exitIcon} className="icon"/></div>
             
             <select className="popup-box__select" value={selection} onChange={(e) => setSelection(e.target.value)}>
-                {listOfOptions.map( option => <option key={uuidv4()} value={option}>{option}</option>)}
+                {listOfOptions.map( (option, index) => <option key={index} value={option}>{option}</option>)}
             </select>
-
-            <button onClick={gotoWorkoutPage} className='popup-box__enter-button'>ENTER</button>
+            
+            <button onClick={handleEnter} className='popup-box__enter-button'>ENTER</button>
         </section>
     )
 }

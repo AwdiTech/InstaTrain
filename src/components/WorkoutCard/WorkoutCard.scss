@@ -49,17 +49,21 @@
 }
 
 .card__column{
-    margin-left: 1rem;
-    margin-right: 1rem;
+    margin: 0 0 1rem;
     text-align: center;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     width: 50%;
+    margin-bottom: 1rem;
 
 }
 
 .card__instructions {
     text-align: center;
     margin: 0 0 0.5rem;
+}
+
+p {
+    margin-bottom: 0.5rem;
 }
